@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+​
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>train schedule</title>
+    <!-- my css file -->
+    <!-- <link rel="stylesheet" type="style/css" href="style.css"> -->
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Firebase Core JavaScript Link -->
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+  <!-- Specific Firebase products we want (Database) -->
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+</head>
+​
+
+<body>
+    ​
+    
+    <div class="container">
+        <header>
+            <div class="jumbotron jumbotron-fluid bg-info">
+                <div class="container">
+                    <h1 class="display-4 text-center">Train Schedule</h1>
+                    
+                </div>
+            </div>
+        </header>
+        ​
+        <div><h2>Current Train Schedule</h2></div>
+        <div></div>
+        <!-- table for results of current train schedule -->
+        <table class="table">
+            <!-- table head and 1 row to list all catagories for results -->
+            <thead>
+                <tr>
+                    <th scope="col" id="TrainNameDiv">Train Name</th>
+                    <th scope="col" id="destinationDiv">Destination</th>
+                    <th scope="col" id="frequencyDiv">Frequency (min)</th>
+                    <th scope="col" id="nextArivalDiv">Next Arival</th>
+                    <th scope="col" id="minutesAwayDiv">Minutes Away</th>
+                </tr>
+            </thead>
+            <!-- table body that we will add a row for each train in each catagory -->
+            <tbody id= "tbodyResults">
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+​
+<br>
+
+<div class="card">
+    <div class="card-header row">
+        Add Train
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="form-group">
+                <label for="name">Train Name</label>
+                <input type="name" class="form-control" id="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="name">Destination</label>
+                <input type="name" class="form-control" id="destination" placeholder="Ex: 'Penn Station'">
+            </div>
+            ​
+            <div class="form-group">
+                <label for="startDate">First Train Time</label>
+                <input type="number" class="form-control" id="firstTrainTime" placeholder="HH:mm">
+            </div>
+            ​
+            <div class="form-group">
+                <label for="frequency">Frequency (min)</label>
+                <input type="number" class="form-control" id="frequency" placeholder="00">
+            </div>
+            <button id="submit" type="button" class="btn btn-primary">Submit</button>
+            ​
+        </form> 
+    </div>
+</div>
+</div>
+
+<script type="text/javascript" script src="train.js"></script>
+
+</body>
+
+</html>
