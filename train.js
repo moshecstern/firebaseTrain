@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+   
+
+    // <body onload="load()">
 
     // 1. create 4 var to initilize var
     var trainName = "";
@@ -49,11 +52,12 @@ $(document).ready(function () {
 
     // 4. use on child added to listen for new database values (works like for loop)
     database.ref().on("child_added", function (snapshot) {
+        var snapVal = snapshot.val();
         console.log(snapshot.val());
         console.log(snapshot.val().trainName);
-        console.log(snapshot.val().destination);
-        console.log(snapshot.val().firstTrainTime);
-        console.log(snapshot.val().frequency);
+        console.log(snapshot.val().destination + " destination");
+        console.log(snapshot.val().firstTrainTime +" first train time");
+        console.log(snapshot.val().frequency + " train frequency in min");
 
         // new table row <tr>
         var newRow = $("<tr>");
@@ -73,7 +77,7 @@ $(document).ready(function () {
 
         // next arival = math function. 
         //  check frequency, what time first train started, and current time
-        var trainsFirstStart = "03:30";
+        var trainsFirstStart = snapVal.firstTrainTime;
 
         //first time
         var firstTimeConverted = moment(trainsFirstStart, "HH:mm").subtract(1, "years");
@@ -81,45 +85,56 @@ $(document).ready(function () {
 
         // current time
         var currentTime = moment();
-        console.log(currentTime + " current time");
+        console.log(moment(currentTime).format("HH:mm") + " current time");
 
         // diff between the times
         var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-        console.log(diffTime);
+        console.log(moment(diffTime).format("HH:mm"));
 
         // time apart (remainderr)
-        var tRemainder = diffTime % frequency;
-        console.log(tRemainder + "tRemainder");
+        var tRemainder = diffTime % snapVal.frequency;
+        console.log(tRemainder + " tRemainder");
 
-        // min untill next train
-        var tMinutesTillTrain = frequency - tRemainder;
+        // min untill next arrival (train)
+        var tMinutesTillTrain = snapVal.frequency - tRemainder;
         console.log("minutes till train " + tMinutesTillTrain);
 
         // next train
         var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-        console.log(nextTrain + " next train is");
+        console.log(moment(nextTrain).format("hh:mm") + " next train is");
+        var nextTrainDiv = $("<td>"+moment(nextTrain).format("HH:mm") + "</td>");
+        //  var nextTrainDiv = $("<td>"+nextTrain.format("HH:mm") + "</td>");
+        newRow.append(nextTrainDiv);
 
-        // use activity 21 for math calculations
         // minutes away <td> also requires the same math function
+        var minutesUntilTrain = $("<td>" + tMinutesTillTrain + "</td>")
+        newRow.append(minutesUntilTrain);
+
+        // adding delete button
+        // var deleteBttn = $("<button>").text("Remove");
+        // var deleteBttn = $("<button id= 'deleteBtn'>Remove</button>");
+        // newRow.append(deleteBttn);
 
         // append <td>'s to <tr> 
         // append <tr> to <tbody>
+        // delete button on click function
+        
         $("tbody").append(newRow);
+        
     }); // end of pulling data from firebase and adding to our form
+            // $((this)).on("click", function(){
+            //     // console.log("clicking!"+ (this));
+            //     console.log($(this).parent());
+            //     $(this).remove((this).parent);
+            //     $("#weirddiv").append(this);
+            // })
+
+
+
+
 
     // input validation - make sure user filled out all fields and military time only
     // put in front of input function
 
 
-
-    // train name
-
-    // destination
-
-    // first train time (military time)
-
-    // frequency (min)  
-
-
-    // activities 17-21 will help
 }); // end of javascript
