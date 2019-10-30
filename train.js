@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
     // 1. create 4 var to initilize var
     var trainName = "";
     var destination = "";
@@ -63,14 +64,41 @@ $(document).ready(function () {
         newRow.append(trainNameTD);
 
         // destination <td> has destination  
-        var destinationTD = $("<td>" + snapshot.val().destination+ "</td>");
+        var destinationTD = $("<td>" + snapshot.val().destination + "</td>");
         newRow.append(destinationTD);
 
         // frequency <td> has frequency
-        var frequencyTD = $("<td>" + snapshot.val().frequency+ "</td>");
+        var frequencyTD = $("<td>" + snapshot.val().frequency + "</td>");
         newRow.append(frequencyTD);
 
-        // next arival = math function.  check frequency, what time first train started, and current time 
+        // next arival = math function. 
+        //  check frequency, what time first train started, and current time
+        var trainsFirstStart = "03:30";
+
+        //first time
+        var firstTimeConverted = moment(trainsFirstStart, "HH:mm").subtract(1, "years");
+        console.log(firstTimeConverted + "first time converted");
+
+        // current time
+        var currentTime = moment();
+        console.log(currentTime + " current time");
+
+        // diff between the times
+        var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+        console.log(diffTime);
+
+        // time apart (remainderr)
+        var tRemainder = diffTime % frequency;
+        console.log(tRemainder + "tRemainder");
+
+        // min untill next train
+        var tMinutesTillTrain = frequency - tRemainder;
+        console.log("minutes till train " + tMinutesTillTrain);
+
+        // next train
+        var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+        console.log(nextTrain + " next train is");
+
         // use activity 21 for math calculations
         // minutes away <td> also requires the same math function
 

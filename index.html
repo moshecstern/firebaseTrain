@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+  <!-- Link to Moment.js should go here -->
+ <script type= "text/javascript" src= "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <!-- Firebase Core JavaScript Link -->
   <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
   <!-- Specific Firebase products we want (Database) -->
@@ -68,21 +69,21 @@
         <form>
             <div class="form-group">
                 <label for="name">Train Name</label>
-                <input type="name" class="form-control" id="name" placeholder="Name">
+                <input type="name" class="form-control" id="name" placeholder="Name" required>
             </div>
             <div class="form-group">
                 <label for="name">Destination</label>
-                <input type="name" class="form-control" id="destination" placeholder="Ex: 'Penn Station'">
+                <input type="name" class="form-control" id="destination" placeholder="Ex: 'Penn Station'" required>
             </div>
             ​
             <div class="form-group">
                 <label for="startDate">First Train Time</label>
-                <input type="number" class="form-control" id="firstTrainTime" placeholder="HH:mm">
+                <input type="time" class="form-control" id="firstTrainTime" placeholder="HH:mm" min="00:01" max="23:59" required>
             </div>
             ​
             <div class="form-group">
                 <label for="frequency">Frequency (min)</label>
-                <input type="number" class="form-control" id="frequency" placeholder="00">
+                <input type="number" class="form-control" id="frequency" placeholder="00" required>
             </div>
             <button id="submit" type="button" class="btn btn-primary">Submit</button>
             ​
